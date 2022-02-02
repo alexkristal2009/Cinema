@@ -17,6 +17,12 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.*;
 
+/**
+ * @author Alex Kristal
+ * @created 02.02.2022
+ * @email alexkristal2009@gmail.com
+ */
+
 @Service
 public class TicketService {
 

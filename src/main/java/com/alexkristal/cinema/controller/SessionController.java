@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * @author Alex Kristal
+ * @created 02.02.2022
+ * @email alexkristal2009@gmail.com
+ */
+
 @RestController
 @RequestMapping("/sessions")
 public class SessionController {
@@ -17,67 +23,67 @@ public class SessionController {
     @Autowired
     private SessionService sessionService;
 
-    @PostMapping("/addNewSession/{movieTitle}")
+    @PostMapping("/sessions/{movieTitle}")
     public SessionDto addNewSession(@PathVariable String movieTitle, @RequestBody Session session) {
         return sessionService.addNewSession(movieTitle, session);
     }
 
-    @GetMapping("/getSessionById/{id}")
+    @GetMapping("/sessions/{id}")
     public SessionDto getSessionById(@PathVariable Long id) {
         return sessionService.getSessionById(id);
     }
 
-    @GetMapping("/getAllSessions")
+    @GetMapping("/sessions")
     public List<SessionDto> getAllSessions() {
         return sessionService.getAllSessions();
     }
 
-    @GetMapping("/getAllSessionsByDate/{date}")
+    @GetMapping("/sessions/{date}")
     public List<SessionDto> getAllSessionsByDate(@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
         return sessionService.getAllSessionsByDate(date);
     }
 
-    @GetMapping("/getAllSessionsByPrice/{price}")
+    @GetMapping("/sessions/{price}")
     public List<SessionDto> getAllSessionsByPrice(@PathVariable Double price) {
         return sessionService.getAllSessionsByPrice(price);
     }
 
-    @GetMapping("/getAllSessionsByPriceLessThan/{price}")
+    @GetMapping("/sessions/less/{price}")
     public List<SessionDto> getAllSessionsByPriceLessThan(@PathVariable Double price) {
         return sessionService.getAllSessionsByPriceLessThan(price);
     }
 
-    @GetMapping("/getAllSessionsByPriceGreaterThan/{price}")
+    @GetMapping("/sessions/greater/{price}")
     public List<SessionDto> getAllSessionsByPriceGreaterThan(@PathVariable Double price) {
         return sessionService.getAllSessionsByPriceGreaterThan(price);
     }
 
-    @GetMapping("/getAllSessionsByMovieTitle/{movieTitle}")
+    @GetMapping("/sessions/{movieTitle}")
     public List<SessionDto> getAllSessionsByMovieTitle(@PathVariable String movieTitle) {
         return sessionService.getAllSessionsByMovieTitle(movieTitle);
     }
 
-    @PostMapping("/deleteAllSessions")
+    @DeleteMapping("/sessions")
     public String deleteAllSessions() {
         return sessionService.deleteAllSessions();
     }
 
-    @PostMapping("/deleteSessionById/{id}")
+    @DeleteMapping("/sessions/{id}")
     public String deleteSessionById(@PathVariable Long id) {
         return sessionService.deleteSessionById(id);
     }
 
-    @PostMapping("/deleteAllSessionsByMovieTitle/{movieTitle}")
+    @DeleteMapping("/sessions/{movieTitle}")
     public String deleteAllSessionsByMovieTitle(@PathVariable String movieTitle) {
         return sessionService.deleteAllSessionsByMovieTitle(movieTitle);
     }
 
-    @PostMapping("/deleteAllSessionsByDate/{date}")
+    @DeleteMapping("/sessions/{date}")
     public String deleteAllSessionsByDate(@PathVariable LocalDate date) {
         return sessionService.deleteAllSessionsByDate(date);
     }
 
-    @PostMapping("/updateSession/{oldSessionId}")
+    @PutMapping("/sessions/{oldSessionId}")
     public SessionDto updateSession(@PathVariable Long oldSessionId, @RequestBody Session newSession) {
         return sessionService.updateSession(oldSessionId, newSession);
     }

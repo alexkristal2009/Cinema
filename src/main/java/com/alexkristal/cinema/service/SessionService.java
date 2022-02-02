@@ -12,6 +12,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Alex Kristal
+ * @created 02.02.2022
+ * @email alexkristal2009@gmail.com
+ */
+
 @Service
 public class SessionService {
 

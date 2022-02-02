@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Alex Kristal
+ * @created 02.02.2022
+ * @email alexkristal2009@gmail.com
+ */
 
 @Service
 public class RoleService {

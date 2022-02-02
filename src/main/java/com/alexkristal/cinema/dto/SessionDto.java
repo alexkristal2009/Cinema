@@ -8,6 +8,12 @@ import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * @author Alex Kristal
+ * @created 02.02.2022
+ * @email alexkristal2009@gmail.com
+ */
+
 @Getter
 @Setter
 @NoArgsConstructor

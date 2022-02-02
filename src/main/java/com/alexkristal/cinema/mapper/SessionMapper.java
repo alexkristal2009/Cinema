@@ -5,6 +5,12 @@ import com.alexkristal.cinema.model.Session;
 import lombok.Builder;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Alex Kristal
+ * @created 02.02.2022
+ * @email alexkristal2009@gmail.com
+ */
+
 @Builder
 @Component
 public class SessionMapper {

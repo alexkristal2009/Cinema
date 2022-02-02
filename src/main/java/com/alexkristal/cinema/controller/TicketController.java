@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * @author Alex Kristal
+ * @created 02.02.2022
+ * @email alexkristal2009@gmail.com
+ */
+
 @RestController
 @RequestMapping("/tickets")
 public class TicketController {
@@ -17,88 +23,87 @@ public class TicketController {
     @Autowired
     private TicketService ticketService;
 
-    @PostMapping("/addNewTicket/{sessionId}")
+    @PostMapping("/tickets/{sessionId}")
     public TicketAndSessionDto addNewTicket(@RequestBody Ticket ticket, @PathVariable Long sessionId) {
         return ticketService.addNewTicket(ticket, sessionId);
     }
 
-    @PostMapping("/addUserToTicket/{userLogin}")
+    @PutMapping("/tickets/{userLogin}")
     public TicketDto addUserToTicket(@RequestBody Ticket ticket, @PathVariable String userLogin) {
         return ticketService.addUserToTicket(ticket, userLogin);
     }
 
-    @GetMapping("/getAllTicketsWithSession")
+    @GetMapping("/tickets/sessions")
     public List<TicketAndSessionDto> getAllTicketsWithSession() {
         return ticketService.getAllTicketsWithSession();
     }
 
-    @GetMapping("/getAllTicketsWithUser")
+    @GetMapping("/tickets/users")
     public List<TicketDto> getAllTicketsWithUser() {
         return ticketService.getAllTicketsWithUser();
     }
 
-    @GetMapping("/getTicketWithSessionByTicketId/{id}")
+    @GetMapping("/tickets/sessions/{id}")
     public TicketAndSessionDto getTicketWithSessionByTicketId (@PathVariable Long id) {
         return ticketService.getTicketWithSessionByTicketId(id);
     }
 
-    @GetMapping("/getTicketWithUserByTicketId/{id}")
+    @GetMapping("/tickets/users/{id}")
     public TicketDto getTicketWithUserByTicketId (@PathVariable Long id) {
         return ticketService.getTicketWithUserByTicketId(id);
     }
 
-    @GetMapping("/getAllTicketsWithSessionBySessionId/{id}")
+    @GetMapping("/tickets/sessions/sessions/{id}")
     public List<TicketAndSessionDto> getAllTicketsWithSessionBySessionId(@PathVariable Long id) {
         return ticketService.getAllTicketsWithSessionBySessionId(id);
     }
 
-    @GetMapping("/getAllTicketsWithUserBySessionId/{id}")
+    @GetMapping("/tickets/users/sessions/{id}")
     public List<TicketDto> getAllTicketsWithUserBySessionId(@PathVariable Long id) {
         return ticketService.getAllTicketsWithUserBySessionId(id);
     }
 
-    @GetMapping("/getAllTicketsWithUserByUserLogin/{login}")
+    @GetMapping("/tickets/users/users/{login}")
     public List<TicketDto> getAllTicketsWithUserByUserLogin(@PathVariable String login) {
         return ticketService.getAllTicketsWithUserByUserLogin(login);
     }
 
-    @GetMapping("/getAllTicketsWithSessionByMovieTitle/{movieTitle}")
+    @GetMapping("/tickets/sessions/{movieTitle}")
     public List<TicketAndSessionDto> getAllTicketsWithSessionByMovieTitle(@PathVariable String movieTitle) {
         return ticketService.getAllTicketsWithSessionByMovieTitle(movieTitle);
     }
 
-    @GetMapping("/getAllTicketsByDate/{date}")
+    @GetMapping("/tickets/sessions/{date}")
     public List<TicketAndSessionDto> getAllTicketsWithSessionByDate(@PathVariable LocalDate date) {
         return ticketService.getAllTicketsWithSessionByDate(date);
     }
 
-    @PostMapping("/deleteAllTickets")
+    @DeleteMapping("/tickets")
     public String deleteAllTickets() {
         return ticketService.deleteAllTickets();
     }
 
-    @PostMapping ("/deleteTicketById/{id}")
+    @DeleteMapping ("/tickets/{id}")
     public String deleteTicketById (@PathVariable Long id) {
         return ticketService.deleteTicketById(id);
     }
 
-    @PostMapping ("/deleteAllTicketsByUserLogin/{login}")
+    @DeleteMapping ("/tickets/users/{login}")
     public String deleteAllTicketsByUserLogin (@PathVariable String login) {
         return ticketService.deleteAllTicketsByUserLogin(login);
     }
 
-    @PostMapping ("/deleteAllTicketsBySessionId/{id}")
+    @DeleteMapping ("/tickets/sessions/{id}")
     public String deleteAllTicketsBySessionId (@PathVariable Long id) {
         return ticketService.deleteAllTicketsBySessionId(id);
     }
 
-    @PostMapping ("/deleteAllTicketsByMovieTitle/{movieTitle}")
+    @DeleteMapping ("/tickets/movies/{movieTitle}")
     public String deleteAllTicketsByMovieTitle (@PathVariable String movieTitle) {
         return ticketService.deleteAllTicketsByMovieTitle(movieTitle);
     }
 
-
-    @PostMapping("/updateTicketById/{id}")
+    @PutMapping("/tickets/{id}")
     public TicketDto updateTicketById(@PathVariable Long id, @RequestBody Ticket ticket) {
         return ticketService.updateTicketById(id, ticket);
     }

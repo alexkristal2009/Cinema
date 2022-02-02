@@ -23,6 +23,12 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Alex Kristal
+ * @created 02.02.2022
+ * @email alexkristal2009@gmail.com
+ */
+
 @Service
 @Transactional
 public class UserService {
@@ -45,6 +51,12 @@ public class UserService {
     @Autowired
     private UserInfoForAdminMapper userInfoForAdminMapper;
 
+    /**
+     * method register
+     *
+     * @param user that is <strong>user</strong> entity
+     * @return userdto
+     */
 
     public UserDto registrationUser(User user) {
 
@@ -73,7 +85,7 @@ public class UserService {
 
     }
 
-    public List<TicketDto> addTicketToUserBiTicketId(String userLogin, Long ticketId){
+    public List<TicketDto> addTicketToUserByTicketId(String userLogin, Long ticketId){
 
         if (!userRepository.existsByLogin(userLogin)) {
             return null;

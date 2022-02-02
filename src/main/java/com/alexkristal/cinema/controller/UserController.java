@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * @author Alex Kristal
+ * @created 02.02.2022
+ * @email alexkristal2009@gmail.com
+ */
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -20,27 +26,27 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/registrationUser")
+    @PostMapping("/users")
     public UserDto registrationUser(@RequestBody User user) {
         return userService.registrationUser(user);
     }
 
-    @PostMapping("/registrationAdmin")
+    @PostMapping("/users/admin")
     public UserDto registrationAdmin(@RequestBody User user) {
         return userService.registrationAdmin(user);
     }
 
-    @PostMapping("/addVipRoleToUser/{login}")
+    @PostMapping("/users/{login}")
     public UserDto addVipRoleToUser(@PathVariable String login) {
         return userService.addVipRoleToUser(login);
     }
 
-    @PostMapping("/addTicketToUserBiTicketId/{userLogin}/{ticketId}")
-    public List<TicketDto> addTicketToUserBiTicketId(@PathVariable String userLogin, @PathVariable Long ticketId) {
-        return userService.addTicketToUserBiTicketId(userLogin, ticketId);
+    @PostMapping("/users/tickets/{userLogin}/{ticketId}")
+    public List<TicketDto> addTicketToUserByTicketId(@PathVariable String userLogin, @PathVariable Long ticketId) {
+        return userService.addTicketToUserByTicketId(userLogin, ticketId);
     }
 
-    @GetMapping("/getAllUsers")
+    @GetMapping("/users")
     public List<UserDto> getAllUsers() {
         return userService.getAllUsers();
     }
@@ -50,12 +56,12 @@ public class UserController {
 //        return userService.getUserById(id);
 //    }
 
-    @GetMapping("/getUserByLogin/{login}")
+    @GetMapping("/users/{login}")
     public UserDto getUserByLogin(@PathVariable String login) {
         return userService.getUserByLogin(login);
     }
 
-    @PostMapping("/deleteAllUsers")
+    @DeleteMapping("/users")
     public String deleteAllUsers() {
         return userService.deleteAllUsers();
     }
@@ -65,44 +71,44 @@ public class UserController {
 //        return userService.deleteUserById(id);
 //    }
 
-    @PostMapping("/deleteUserByLogin/{login}")
+    @DeleteMapping("/users/{login}")
     public String deleteUserByLogin(@PathVariable String login) {
         return userService.deleteUserByLogin(login);
     }
 
-    @PostMapping("/updateUserByLogin/{login}")
+    @PutMapping("/users/{login}")
     public UserDto updateUserByLogin(@PathVariable String login, @RequestBody User user) {
         return userService.updateUserByLogin(login, user);
     }
 
     // -------------------- Only for ADMIN ----------------------------
 
-    @GetMapping("/getAllUserInfo/{login}")
+    @GetMapping("/users/admin/{login}")
     public UserInfoForAdminDto getAllUserInfo(@PathVariable String login) {
         return userService.getAllUserInfo(login);
     }
 
-    @GetMapping("/getAllUserByRoleName/{roleName}")
+    @GetMapping("/users/admin/{roleName}")
     public List<UserInfoForAdminDto> getAllUserByRoleName(@PathVariable Roles roleName) {
         return userService.getAllUserByRoleName(roleName);
     }
 
-    @GetMapping("/getAllUserByStatus/{statusName}")
+    @GetMapping("/users/admin/{statusName}")
     public List<UserInfoForAdminDto> getAllUserByStatus(@PathVariable Status statusName) {
         return userService.getAllUserByStatus(statusName);
     }
 
-    @GetMapping("/getAllUserBySex/{sexName}")
+    @GetMapping("/users/admin/{sexName}")
     public List<UserInfoForAdminDto> getAllUserBySex(@PathVariable Sex sexName) {
         return userService.getAllUserBySex(sexName);
     }
 
-    @GetMapping("/getAllUsersOlderThan/{years}")
+    @GetMapping("/users/admin/older/{years}")
     public List<UserInfoForAdminDto> getAllUsersOlderThan(@PathVariable int years) {
         return userService.getAllUsersOlderThan(years);
     }
 
-    @GetMapping("/getAllUsersUnderThan/{years}")
+    @GetMapping("/users/admin/under/{years}")
     public List<UserInfoForAdminDto> getAllUsersUnderThan(@PathVariable int years) {
         return userService.getAllUsersUnderThan(years);
     }
@@ -111,7 +117,7 @@ public class UserController {
 
     // -------------------- просто для теста ----------------------------
 
-    @GetMapping("/getUserByIdTest/{id}")
+    @GetMapping("/users/{id}")
     public User getUserByIdTest(@PathVariable Long id) {
         return userService.getUserByIdTest(id);
     }

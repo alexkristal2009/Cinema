@@ -11,6 +11,12 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * @author Alex Kristal
+ * @created 02.02.2022
+ * @email alexkristal2009@gmail.com
+ */
+
 @RestController
 @RequestMapping("/movies")
 public class MovieController {
@@ -18,7 +24,7 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @PostMapping("/addNewMovie")
+    @PostMapping("/movies/")
     public MovieDto addNewMovie(@RequestParam("image") MultipartFile image,
                                 @RequestParam("title") String title,
                                 @RequestParam("yearOfRelease") Long yearOfRelease,
@@ -28,42 +34,42 @@ public class MovieController {
         return movieService.addNewMovie(image, title, yearOfRelease, genre, description);
     }
 
-    @GetMapping("/getAllMovies")
+    @GetMapping("/movies")
     public List<MovieDto> getAllMovies() {
         return movieService.getAllMovies();
     }
 
-    @GetMapping("/getMovieByMovieTitle/{movieTitle}")
+    @GetMapping("/movies/{movieTitle}")
     public MovieDto getMovieByMovieTitle(@PathVariable String movieTitle) {
         return movieService.getMovieByMovieTitle(movieTitle);
     }
 
-    @GetMapping("/getAllMoviesByGenre/{genre}")
+    @GetMapping("/movies/{genre}")
     public List<MovieDto> getAllMoviesByGenre(@PathVariable String genre) {
         return movieService.getAllMoviesByGenre(genre);
     }
 
-    @GetMapping("/getAllMoviesByDate/{date}")
+    @GetMapping("/movies/{date}")
     public List<MovieDto> getAllMoviesByDate(@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
         return movieService.getAllMoviesByDate(date);
     }
 
-    @PostMapping("/deleteAllMovies")
+    @DeleteMapping("/movies")
     public String deleteAllMovies() {
         return movieService.deleteAllMovies();
     }
 
-    @PostMapping("/deleteMovieByMovieTitle/{movieTitle}")
+    @DeleteMapping("/movies/{movieTitle}")
     public String deleteMovieByMovieTitle(@PathVariable String movieTitle) {
         return movieService.deleteMovieByMovieTitle(movieTitle);
     }
 
-    @PostMapping("/deleteAllMoviesByGenre/{genre}")
+    @DeleteMapping("/movies/{genre}")
     public String deleteMoviesByGenre(@PathVariable String genre) {
         return movieService.deleteAllMoviesByGenre(genre);
     }
 
-    @PostMapping("/updateMovieByMovieTitle/{oldMovieTitle}")
+    @PutMapping("/movies/{oldMovieTitle}")
     public MovieDto updateMovieByMovieTitle(@PathVariable("oldMovieTitle") String oldMovieTitle,
                                             @RequestParam("newImage") MultipartFile newImage,
                                             @RequestParam("newTitle") String newTitle,
